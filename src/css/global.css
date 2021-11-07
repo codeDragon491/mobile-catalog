@@ -1,0 +1,8 @@
+:root {
+  --creme: #fafafa;
+  --white: #ffffff;
+  --light-grey: #c8c8c8;
+}
+body {
+  background-color: var(--creme)
+}
