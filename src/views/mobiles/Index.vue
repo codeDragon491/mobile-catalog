@@ -5,9 +5,12 @@
       Here you can see our large selection of mobile phones.<br>
       You always get a screen change when you buy your mobile with a subscription.
     </p>
-    <search @search-query="setQuery" :items="mobilesStatic" v-model="mobiles" />
-   <section class="mobiles-section">
-     <div class="mobile-card"
+    <section class="actions-section">
+      <search @search-query="setQuery" :items="mobilesStatic" v-model="mobiles" />
+      <filters :filters="filtersData" :items="mobilesStatic" v-model="mobiles" />
+    </section>
+    <section class="mobiles-section">
+      <div class="mobile-card"
         v-for="mobile in mobiles"
         :key="mobile.id"
       >
@@ -27,13 +30,18 @@ import {mockData} from '@/data/mockData.js'
 export default {
   name: 'Catalog',
   components: {
-    Search: () => import(/* webpackMode: "eager" */ '@/components/Search.vue')
+    Search: () => import(/* webpackMode: "eager" */ '@/components/Search.vue'),
+    Filters: () => import(/* webpackMode: "eager" */ '@/components/Filters.vue')
   },
   data () {
     return {
       mobilesStatic: mockData,
       mobiles: mockData,
       searchQuery: null,
+<<<<<<< HEAD
+=======
+      filtersData: ['Apple', 'Samsung', '64 GB', '128 GB', '256 GB', '512 GB', '1 TB', '5G']
+>>>>>>> 0a75c28... build filters feature
     }
   },
   filters: {
@@ -56,6 +64,10 @@ export default {
 <style scoped>
 #catalog-page {
   margin: 0 2rem;
+}
+.actions-section{
+  width: 100%;
+  margin: 0 auto;
 }
 .mobiles-section {
   margin: 2rem 0;
@@ -105,11 +117,13 @@ export default {
   }
 }
 @media screen and (min-width: 1024px) {
-  #catalog-page {
-    margin: 0 15rem;
-  }
   .mobiles-section {
     margin: 3rem 0;
+  }
+}
+@media screen and (min-width: 1280px) {
+  #catalog-page {
+    margin: 0 15rem;
   }
 }
 </style>

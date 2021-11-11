@@ -32,7 +32,6 @@ export default {
     resultQuery() {
       const items = [...this.items]
       if (this.searchQuery) {
-        console.log(items)
         return items.filter(item => {
           return this.searchQuery
             .toLowerCase()
@@ -58,17 +57,8 @@ export default {
 </script>
 <style scoped>
 .search-box-wrapper {
-  width: 80%;
   position: relative;
-  margin: 3rem auto 0;
-}
-.icon.icon-x {
-  cursor: pointer;
-  position: absolute;
-  transition: all .1s ease-in-out;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 1rem;
+  margin-top: 3rem;
 }
 #search-box {
   width: -webkit-fill-available;
@@ -90,6 +80,10 @@ export default {
 .icon.icon-x {
   cursor: pointer;
   position: absolute;
+<<<<<<< HEAD
+=======
+  transition: all .1s ease-in-out;
+>>>>>>> c3455f7... build filters feature
   top: 50%;
   transform: translateY(-50%);
   right: 1rem;
