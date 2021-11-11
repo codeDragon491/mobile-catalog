@@ -5,19 +5,20 @@
       Here you can see our large selection of mobile phones.<br>
       You always get a screen change when you buy your mobile with a subscription.
     </p>
+    <search @search-query="setQuery" :items="mobilesStatic" v-model="mobiles" />
    <section class="mobiles-section">
      <div class="mobile-card"
         v-for="mobile in mobiles"
         :key="mobile.id"
       >
-      <p class="title">{{ mobile.name }}</p>
-      <p class="memory">{{ mobile.memory }}</p>
-      <div class="image" 
-        :style="{ backgroundImage: `url(${mobile.image})` }"
-      />
-      <p class="price">{{ mobile.price }}</p>
-     </div>
-   </section>
+        <p class="title" :inner-html.prop="mobile.name | highlight(searchQuery)">{{ mobile.name }}</p>
+        <p class="memory">{{ mobile.memory }}</p>
+        <div class="image"
+          :style="{ backgroundImage: `url(${mobile.image})` }"
+        />
+        <p class="price">{{ mobile.price }}</p>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -25,9 +26,27 @@
 import {mockData} from '@/data/mockData.js'
 export default {
   name: 'Catalog',
+  components: {
+    Search: () => import(/* webpackMode: "eager" */ '@/components/Search.vue')
+  },
   data () {
     return {
-      mobiles: mockData
+      mobilesStatic: mockData,
+      mobiles: mockData,
+      searchQuery: null,
+    }
+  },
+  filters: {
+    highlight: (word, query) => {
+      const check = new RegExp(query, "ig")
+      return word.toString().replace(check, function(matchedText) {
+        return ('<span class=\'highlight\'>' + matchedText + '</span>')
+      })
+    }
+  },
+  methods: {
+    setQuery(query) {
+      this.searchQuery = query
     }
   }
 }
@@ -81,13 +100,16 @@ export default {
   .mobiles-section {
     grid-template-columns: repeat(auto-fill, 240px);
   }
+  .actions-section{
+    width: 80%;
+  }
 }
 @media screen and (min-width: 1024px) {
   #catalog-page {
     margin: 0 15rem;
   }
   .mobiles-section {
-    margin: 5rem 0;
+    margin: 3rem 0;
   }
 }
 </style>

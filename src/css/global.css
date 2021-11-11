@@ -2,7 +2,28 @@
   --creme: #fafafa;
   --white: #ffffff;
   --light-grey: #c8c8c8;
+  --navy-grey: #2c3e50;
 }
+/******** MAIN styles **********/
 body {
   background-color: var(--creme)
+}
+a, button {
+  cursor: pointer;
+}
+
+/******** DETAILS styles **********/
+.highlight {
+  font-weight: bold;
+}
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .3s ease-in-out;
+}
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  width: 0;
+  transition: all .3s ease-in-out;
 }
