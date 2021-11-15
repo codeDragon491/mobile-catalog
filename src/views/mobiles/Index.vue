@@ -7,12 +7,13 @@
     </p>
     <section class="actions-section">
       <search @search-query="setQuery" :items="mobilesStatic" v-model="mobiles" />
-      <filters :filters="filtersData" :items="mobilesStatic" v-model="mobiles" />
+      <main-filters :filters="filtersData" :items="mobilesStatic" v-model="mobiles" />
     </section>
     <section class="mobiles-section">
       <div class="mobile-card"
         v-for="mobile in mobiles"
         :key="mobile.id"
+        @click="goToDetail(mobile)"
       >
         <p class="title" :inner-html.prop="mobile.name | highlight(searchQuery)">{{ mobile.name }}</p>
         <p class="memory">{{ mobile.memory }}</p>
@@ -31,7 +32,7 @@ export default {
   name: 'Catalog',
   components: {
     Search: () => import(/* webpackMode: "eager" */ '@/components/Search.vue'),
-    Filters: () => import(/* webpackMode: "eager" */ '@/components/Filters.vue')
+    MainFilters: () => import(/* webpackMode: "eager" */ '@/components/MainFilters.vue')
   },
   data () {
     return {
@@ -42,6 +43,11 @@ export default {
 =======
       filtersData: ['Apple', 'Samsung', '64 GB', '128 GB', '256 GB', '512 GB', '1 TB', '5G']
 >>>>>>> 0a75c28... build filters feature
+    }
+  },
+  computed: {
+    mobileNameFormatted() {
+      return this.mobile.name.replace(/\s+/g, '-')
     }
   },
   filters: {
@@ -55,6 +61,11 @@ export default {
   methods: {
     setQuery(query) {
       this.searchQuery = query
+    },
+    goToDetail(mobile) {
+      const mobileNameFormatted = mobile.name.replace(/\s+/g, '-')
+      const memoryFormatted = mobile.memory.replace(/\s+/g, '-')
+      this.$router.push({ name: 'Detail', params: { name: mobileNameFormatted, memory: memoryFormatted, id: mobile.id }})
     }
   }
 }
@@ -63,7 +74,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #catalog-page {
-  margin: 0 2rem;
+  margin: 3.75rem 2rem 0;
+  text-align: center;
 }
 .actions-section{
   width: 100%;
@@ -117,6 +129,12 @@ export default {
   }
 }
 @media screen and (min-width: 1024px) {
+<<<<<<< HEAD
+=======
+  #catalog-page {
+    margin: 3.75rem 15rem 0;
+  }
+>>>>>>> 7fe20e2... build detail page
   .mobiles-section {
     margin: 3rem 0;
   }

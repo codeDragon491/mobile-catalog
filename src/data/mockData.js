@@ -3,6 +3,15 @@ export const mockData = [
           "createdAt": "2021-11-05T21:38:38.516Z",
           "name": "Apple iPhone 13",
           "image": "https://www.telmore.dk/shop/images/8492919597042512/apple-iphone-13-mini-midnight-front.png",
+          "imageBig": "https://cdn1.telenor.dk/ImageProxy/id/24922/height242/width172/resizemodeScaleToFit/apple-iphone-13--128gb-midnight",
+          "colors": [
+            {"value": "black", "image": "https://cdn1.telenor.dk/ImageProxy/id/24922/height242/width172/resizemodeScaleToFit/apple-iphone-13--128gb-midnight"},
+            {"value": "#e4e7e4", "image": "https://cdn1.telenor.dk/ImageProxy/id/24935/height484/width344/resizemodeScaleToFit/apple-iphone-13-mini-128gb-starlight"},
+            {"value": "pink", "image": "https://cdn1.telenor.dk/ImageProxy/id/24933/height484/width344/resizemodeScaleToFit/apple-iphone-13-mini-128gb-pink"},
+            {"value": "red", "image": "https://cdn1.telenor.dk/ImageProxy/id/24934/height484/width344/resizemodeScaleToFit/apple-iphone-13-mini-128gb-red"},
+            {"value": "blue", "image" : "https://cdn1.telenor.dk/ImageProxy/id/24931/height484/width344/resizemodeScaleToFit/apple-iphone-13-mini-128gb-blue"},
+          ],
+          "availableMemories": ['128 GB', '256 GB', '512 GB'],
           "price": "239 DKK/mth",
           "memory": "128 GB",
           "id": "1"
@@ -11,6 +20,7 @@ export const mockData = [
           "createdAt": "2021-11-05T19:01:25.340Z",
           "name": "Apple iPhone 13",
           "image": "https://www.telmore.dk/shop/images/8492919597042512/apple-iphone-13-mini-midnight-front.png",
+          "imageBig": "https://cdn1.telenor.dk/ImageProxy/id/24922/height242/width172/resizemodeScaleToFit/apple-iphone-13--128gb-midnight",
           "price": "277 DKK/mth",
           "memory": "256 GB",
           "id": "2"
@@ -19,6 +29,7 @@ export const mockData = [
           "createdAt": "2021-11-05T20:01:31.074Z",
           "name": "Apple iPhone 13",
           "image": "https://www.telmore.dk/shop/images/8492919597042512/apple-iphone-13-mini-midnight-front.png",
+          "imageBig": "https://cdn1.telenor.dk/ImageProxy/id/24922/height242/width172/resizemodeScaleToFit/apple-iphone-13--128gb-midnight",
           "price": "354 DKK/mth",
           "memory": "512 GB",
           "id": "3"
@@ -27,6 +38,7 @@ export const mockData = [
           "createdAt": "2021-11-05T14:51:15.593Z",
           "name": "Apple iPhone 13 mini",
           "image": "https://www.telmore.dk/shop/images/8492919597042512/apple-iphone-13-mini-midnight-front.png",
+          "imageBig": "https://cdn1.telenor.dk/ImageProxy/id/24922/height242/width172/resizemodeScaleToFit/apple-iphone-13--128gb-midnight",
           "price": "210 DKK/mth",
           "memory": "128 GB",
           "id": "4"
@@ -35,6 +47,7 @@ export const mockData = [
           "createdAt": "2021-11-06T05:30:24.601Z",
           "name": "Apple iPhone 13 mini",
           "image": "https://www.telmore.dk/shop/images/8492919597042512/apple-iphone-13-mini-midnight-front.png",
+          "imageBig": "https://cdn1.telenor.dk/ImageProxy/id/24922/height242/width172/resizemodeScaleToFit/apple-iphone-13--128gb-midnight",
           "price": "249 DKK/mth",
           "memory": "256 GB",
           "id": "5"
@@ -43,6 +56,7 @@ export const mockData = [
           "createdAt": "2021-11-05T12:42:41.244Z",
           "name": "Apple iPhone 13 mini",
           "image": "https://www.telmore.dk/shop/images/8492919597042512/apple-iphone-13-mini-midnight-front.png",
+          "imageBig": "https://cdn1.telenor.dk/ImageProxy/id/24922/height242/width172/resizemodeScaleToFit/apple-iphone-13--128gb-midnight",
           "price": "323 DKK/mth",
           "memory": "512 GB",
           "id": "6"
@@ -50,7 +64,8 @@ export const mockData = [
         {
           "createdAt": "2021-11-05T17:00:11.450Z",
           "name": "Apple iPhone 13 Pro",
-          "image": "	https://www.telmore.dk/shop/images/8492919659002032/apple-iphone-13-pro-graphite-front.png",
+          "image": "https://www.telmore.dk/shop/images/8492919659002032/apple-iphone-13-pro-graphite-front.png",
+          "imageBig": "https://cdn1.telenor.dk/ImageProxy/id/24919/height484/width344/resizemodeScaleToFit/apple-iphone-13-pro-128gb-graphite",
           "price": "315 DKK/mth",
           "memory": "128 GB",
           "id": "8"

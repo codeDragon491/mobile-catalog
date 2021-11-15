@@ -11,12 +11,13 @@ const routes = [
     component: Catalog
   },
   {
-    path: '/detail/:id',
+    path: '/detail/:id/:name/:memory',
     name: 'Detail',
     // route level code-splitting
     // this generates a separate chunk (detail.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "detail" */ '../views/mobiles/Detail.vue')
+    component: () => import(/* webpackChunkName: "detail" */ '../views/mobiles/Detail.vue'),
+    props: true
   },
   {
     path: '/cart',

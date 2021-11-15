@@ -7,8 +7,13 @@
       @click="setFilter(filter)"
     >
         {{ filter }}
+<<<<<<< HEAD
         <span :class="filter === filterChoosen ? 'visible' : 'hidden'" @click.stop="filterChoosen = null">
             <img class="icon icon-x" alt="icon-x" src="@/assets/close-light.svg" />
+=======
+        <span v-if="filter === filterChoosen" :class="filter === filterChoosen ? 'visible' : 'hidden'" @click.stop="filterChoosen = null">
+            <img class="icon icon-x" src="@/assets/close-light.svg" />
+>>>>>>> b972324... build detail page
         </span>
     </div>
   </div>
