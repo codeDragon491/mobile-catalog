@@ -1,5 +1,6 @@
 <template>
   <div id="catalog-page">
+    <cart />
     <h1>Mobilephones</h1>
     <p>
       Here you can see our large selection of mobile phones.<br>
@@ -32,17 +33,15 @@ export default {
   name: 'Catalog',
   components: {
     Search: () => import(/* webpackMode: "eager" */ '@/components/Search.vue'),
-    MainFilters: () => import(/* webpackMode: "eager" */ '@/components/MainFilters.vue')
+    MainFilters: () => import(/* webpackMode: "eager" */ '@/components/MainFilters.vue'),
+    Cart: () => import(/* webpackMode: "eager" */ '@/components/Cart.vue')
   },
   data () {
     return {
       mobilesStatic: mockData,
       mobiles: mockData,
       searchQuery: null,
-<<<<<<< HEAD
-=======
       filtersData: ['Apple', 'Samsung', '64 GB', '128 GB', '256 GB', '512 GB', '1 TB', '5G']
->>>>>>> 0a75c28... build filters feature
     }
   },
   computed: {
@@ -74,7 +73,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #catalog-page {
-  margin: 3.75rem 2rem 0;
+  margin: 5rem 2rem 0;
   text-align: center;
 }
 .actions-section{
@@ -129,19 +128,13 @@ export default {
   }
 }
 @media screen and (min-width: 1024px) {
-<<<<<<< HEAD
-=======
-  #catalog-page {
-    margin: 3.75rem 15rem 0;
-  }
->>>>>>> 7fe20e2... build detail page
   .mobiles-section {
     margin: 3rem 0;
   }
 }
 @media screen and (min-width: 1280px) {
   #catalog-page {
-    margin: 0 15rem;
+    margin: 5rem 15rem;
   }
 }
 </style>

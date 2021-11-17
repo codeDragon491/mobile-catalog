@@ -1,25 +1,29 @@
 <template>
   <div id="detail-page">
-    <article class="detail-left-article">
-      <div class="card">
-        <h1 class="left-title">{{ mobile.name }}</h1>
-        <div class="image"
-          :style="{ backgroundImage: `url(${getImage()})` }"
-        />
-      </div>
-    </article>
-     <article class="detail-right-article">
-      <h2 class="right-title">Choose color and memory</h2>
-      <color-filter :filterData="colorsData" v-model="color" />
-      <memory-filter :filterData="memoryData" v-model="memory" />
-      <section class="pay-section">  
-        <div class="price-wrapper">
-          <p class="highlight">Price</p>
-          <p>{{ memoryChosen ? getNewPrice() : mobile.price }}</p>
+    <cart :list="cartList" />
+    <section class="articles">
+      <article class="detail-left-article">
+        <div class="card">
+          <h1 class="left-title">{{ mobile.name }}</h1>
+          <div class="image"
+            :style="{ backgroundImage: `url(${getImage() })` }"
+          />
         </div>
-        <button class="pay-button">Buy</button>
-      </section>
-    </article>
+      </article>
+      <article class="detail-right-article">
+        <h2 class="right-title">Choose color and memory</h2>
+        <color-filter :filterData="colorsData" v-model="color" />
+        <memory-filter :filterData="memoryData" v-model="memory" />
+        <section class="pay-section">  
+          <div class="price-wrapper">
+            <p class="highlight">Price</p>
+            <p>{{ getNewPrice() }}</p>
+          </div>
+          <button class="pay-button" @click="addToCart(mobile)">Add to cart</button>
+        </section>
+      </article>
+    </section>
+    <notification v-model="notified" title="Added to cart" :action="action" />
   </div>
 </template>
 <script>
@@ -28,7 +32,9 @@ export default {
   name: 'Detail',
    components: {
     ColorFilter: () => import(/* webpackMode: "eager" */ '@/components/ColorFilter.vue'),
-    MemoryFilter: () => import(/* webpackMode: "eager" */ '@/components/MemoryFilter.vue')
+    MemoryFilter: () => import(/* webpackMode: "eager" */ '@/components/MemoryFilter.vue'),
+    Cart: () => import(/* webpackMode: "eager" */ '@/components/Cart.vue'),
+    Notification: () => import(/* webpackChunkName: "notification" */ '@/components/Notification.vue')
   },
   props: {
     id: {
@@ -38,21 +44,23 @@ export default {
   },
   data() {
     return {
+      notified: false,
       mobiles: mockData,
-      color: 'black',
-      memoryChosen: null,
-      colorsData: [
-          { title: 'midnight', value: 'black' }, 
-          { title: 'starlight', value: '#e4e7e4' },
-          { title: 'pink', value: 'pink' },
-          { title: 'red', value: 'red' },
-          { title: 'blue', value: 'blue' },
-        ],
+      memoryChoosen: null,
+      colorChoosen: null,
+      cartList: localStorage.getItem('cartList') ? JSON.parse(localStorage.getItem('cartList')) : [] ,
+      action: {
+        routeName: 'ShoppingCart',
+        title: 'See'
+      }
     }
   },
   computed: {
     mobile () {
       return this.mobiles.find(mobile => mobile.id === this.id)
+    },
+    colorsData () {
+      return this.mobile.availableColors
     },
     memoryData() {
       return this.mobile.availableMemories
@@ -62,31 +70,56 @@ export default {
         return this.mobile.memory
       },
       set(value) {
-        this.memoryChosen = value
+        this.memoryChoosen = value
+      }
+    },
+    color: {
+      get() {
+        return this.mobile.color
+      },
+      set(value) {
+        this.colorChoosen = value
       }
     },
   },
   watch: {
-    color () {
+    colorChoosen() {
       this.getImage()
     },
-    memoryChosen() {
+    memoryChoosen() {
       this.getNewPrice()
     }
   },
   methods: {
     getImage () {
-      return this.mobile.colors.find(color => color.value === this.color).image
+      return this.colorChoosen ? this.mobile.availableColors.find(color => color.value === this.colorChoosen).image : 
+      this.mobile.availableColors.find(color => color.value === this.color).image
+    },
+    getNewMemory () {
+      return this.mobiles.find(mobile => mobile.name === this.mobile.name && mobile.memory === this.memory)
     },
     getNewPrice () {
-      return this.mobiles.find(mobile => mobile.name === this.mobile.name && mobile.memory === this.memoryChosen).price
+      return this.memoryChoosen ? this.mobiles.find(mobile => mobile.name === this.mobile.name && mobile.memory === this.memoryChoosen).price : 
+      this.mobile.price
+    },
+    addToCart (mobile) {
+      this.notified = true
+      const newMobile = Object.assign({}, mobile)
+      newMobile.image = this.getImage()
+      newMobile.memory = this.getNewMemory()
+      newMobile.price = this.getNewPrice()
+      newMobile.color = this.colorChoosen ? this.colorChoosen : this.color
+      this.cartList.push(newMobile)
+      localStorage.setItem('cartList', JSON.stringify(this.cartList))
     }
   },
 }
 </script>
 <style scoped>
 #detail-page {
-  margin: 1rem;
+  margin: 5rem 1rem;
+}
+.articles {
   display: grid;
   grid-template-columns: 100%;
   grid-row-gap: 1.5rem;
@@ -138,7 +171,7 @@ export default {
   padding: .75rem .25rem;
   border: 0;
   cursor: pointer;
-  min-width: 114px;
+  min-width: 154px;
   background-color: var(--white);
   border: 1px solid var(--dark-purple);
   color: var(--dark-purple);
@@ -158,7 +191,7 @@ export default {
   }
 }
 @media screen and (min-width: 1024px) {
-  #detail-page{
+  .articles {
     grid-template-columns: 50% 50%
   }
   .pay-section {
@@ -166,11 +199,16 @@ export default {
   }
 }
 @media screen and (min-width: 1440px) {
-  #detail-page{
+  #detail-page {
     margin: 5em 12rem 0;
   }
    .pay-section {
     width: 60%;
+  }
+  .cart-wrapper {
+    position: fixed;
+    right: 5rem;
+    top: 1.5rem;
   }
 }
 

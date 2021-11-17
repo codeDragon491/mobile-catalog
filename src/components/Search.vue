@@ -80,10 +80,7 @@ export default {
 .icon.icon-x {
   cursor: pointer;
   position: absolute;
-<<<<<<< HEAD
-=======
   transition: all .1s ease-in-out;
->>>>>>> c3455f7... build filters feature
   top: 50%;
   transform: translateY(-50%);
   right: 1rem;

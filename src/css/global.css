@@ -5,13 +5,14 @@
   --navy-grey: #2c3e50;
   --medium-purple: #a97cd5;
   --dark-purple: #492a8e;
+  --dark-cyan: #008b8b;
 
 }
 /******** MAIN styles **********/
 body {
   background-color: var(--creme)
 }
-a, button {
+a, button, .icon {
   cursor: pointer;
 }
 
