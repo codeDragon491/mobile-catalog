@@ -1,0 +1,47 @@
+@mixin flex-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-center-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@mixin grid-one-column($value: 1.5rem){
+  display: grid;
+  grid-template-columns: 100%;
+  grid-row-gap: $value;
+}
+@mixin background-center-no-repeat ($value1){
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: $value1, 100%;
+}
+@mixin background-purple-white($value: --medium-purple) {
+  background-color: var($value);
+  color: var(--white);
+}
+@mixin background-border-color($value1: --creme , $value2: --creme) {
+  background-color: var($value1);
+  border: 1px solid var($value2);
+}
+@mixin margin-xl-0{
+  margin: $size-xl 0;
+}
+@mixin margin-dektop {
+  margin: 5rem 12rem 0;
+}
+@mixin margin-dot {
+  margin: 1.5rem 1rem 1rem 0;
+}
+@mixin margin-below-desktop {
+  margin: 5rem 1rem;
+}

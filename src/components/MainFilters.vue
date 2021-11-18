@@ -60,31 +60,28 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
 .filters-wrapper {
   margin-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  @include flex-center-wrap;
 }
 .filter {
   cursor: pointer;
   border: 1px solid var(--medium-purple);
   color: var(--medium-purple);
   font-size: 0.93rem;
-  border-radius: 1.25rem;
+  border-radius: $size-lg;
   margin: 1rem 1rem 0 0;
   padding: 0.5rem 1rem;
   min-width: 81px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  &:hover, &.active {
+    @include background-purple-white;
+  }
 }
-.filter:hover, .active {
- background-color: var(--medium-purple);
- color: var(--white);
-}
+
 .icon.icon-x {
   display: block;
 }

@@ -3,7 +3,7 @@
     <cart :list="cartList" />
     <section class="articles">
       <article class="detail-left-article">
-        <div class="card">
+        <div class="mobile-card">
           <h1 class="left-title">{{ mobile.name }}</h1>
           <div class="image"
             :style="{ backgroundImage: `url(${getImage() })` }"
@@ -115,14 +115,12 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 #detail-page {
-  margin: 5rem 1rem;
+  @include margin-below-desktop;
 }
 .articles {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-row-gap: 1.5rem;
+  @include grid-one-column;
 }
 .detail-right-article {
   display: grid;
@@ -130,22 +128,18 @@ export default {
   justify-items: center;
   grid-row-gap: 1rem;
 }
-.card {
+.mobile-card {
   background-color: var(--white);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex-column-center;
 }
 .image {
   height: 344px;
   width: 244px;
-  background-position: center;
-  background-repeat: no-repeat; 
-  background-size: 100% 100%;
+  @include background-center-no-repeat(100%);
   margin-bottom: 3rem;
 }
 .left-title {
-  font-size: 2rem;
+  font-size: $size-xl;
   margin: 3rem 0 2rem;
 }
 .right-title {
@@ -167,22 +161,19 @@ export default {
   left: 50%;
   transform: translate(-50%);
   border-radius: 50px;
-  margin: 2rem 0;
+  @include margin-xl-0;
   padding: .75rem .25rem;
   border: 0;
-  cursor: pointer;
   min-width: 154px;
-  background-color: var(--white);
-  border: 1px solid var(--dark-purple);
+  @include background-border-color(--white, --dark-purple);
   color: var(--dark-purple);
   font-weight: 600;
-  box-shadow: 0 13px 5px -10px rgb(0 0 0 / 20%);
-  font-size: 1rem;
+  box-shadow: 0 13px 5px -10px rgba(0, 0, 0, 20);
+  font-size: $size-base;
   letter-spacing: .5px;
 }
 .pay-button:hover {
-  background-color: var(--dark-purple);
-  color: var(--white);
+  @include background-purple-white(--dark-purple)
 }
 @media screen and (min-width: 768px) {
   .image {
@@ -200,15 +191,10 @@ export default {
 }
 @media screen and (min-width: 1440px) {
   #detail-page {
-    margin: 5em 12rem 0;
+    @include margin-dektop;
   }
    .pay-section {
     width: 60%;
-  }
-  .cart-wrapper {
-    position: fixed;
-    right: 5rem;
-    top: 1.5rem;
   }
 }
 

@@ -19,36 +19,30 @@ export default {
   mixins: [FilterScript]
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .colors-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  @include flex-center-wrap;
 }
-.color-dot, .dot-background {
+.color-dot {
   cursor: pointer;
   color: var(--navy-grey);
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  margin: 1.5rem 1rem 1rem 0;
-}
-.dot-background {
-  position: relative;
-  background-color: var(--creme);
-  border: 1px solid var(--creme);
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.color-dot {
   position: absolute;
   margin: 0;
 }
-.dot-background:hover, .active {
-  border: 1px solid var(--light-grey);
+.dot-background {
+  @extend .color-dot;
+  position: relative;
+  @include background-border-color;
+  width: 50px;
+  height: 50px;
+ @include margin-dot;
+  @include flex-center;
+  &:hover, &.active {
+    border: 1px solid var(--light-grey); 
+  }
 }
 .title {
   text-transform: capitalize;

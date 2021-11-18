@@ -71,9 +71,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang="scss" scoped>
 #catalog-page {
-  margin: 5rem 2rem 0;
+  margin: 5rem 2rem;
   text-align: center;
 }
 .actions-section{
@@ -81,22 +81,17 @@ export default {
   margin: 0 auto;
 }
 .mobiles-section {
-  margin: 2rem 0;
-  display: grid;
+  @include margin-xl-0;
+  @include grid-one-column(2rem);
   grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
-  grid-template-columns: 100%;
   justify-content: center;
 }
 .mobile-card {
   cursor: pointer;
-  background-color: var(--white);
-  border-radius: 1.25rem;
+  @include background-border-color(--white, --white);
+  border-radius: $size-lg;
   transition: all .3s linear;
-  border: 1px solid var(--white);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex-column-center
 }
 .mobile-card:hover {
   border: 1px solid var(--light-grey);
@@ -104,20 +99,18 @@ export default {
 .image {
   height: 285px;
   width: 180px;
-  background-position: center;
-  background-repeat: no-repeat; 
-  background-size: 75% 100%;
+  @include background-center-no-repeat(75%);
 }
 .title {
   margin: 1.875rem 0 0.5rem;
 }
 .memory {
-  font-size: 0.75rem;
+  font-size: $size-small;
   margin: 0 0 1rem;
 }
 .price {
   margin-top: 1rem;
-  font-size: 1.25rem;
+  font-size: $size-lg;
 }
 @media screen and (min-width: 768px) {
   .mobiles-section {

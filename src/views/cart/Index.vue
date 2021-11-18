@@ -31,7 +31,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #cart-page {
-  margin: 5rem 1rem 0;
+  @include margin-below-desktop;
 }
 .cart-items {
   @include grid-one-column;

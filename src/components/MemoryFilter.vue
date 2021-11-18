@@ -19,26 +19,22 @@ export default {
   mixins: [FilterScript]
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .memory-filter-wrapper {    
-  display: flex;
-  align-items: center;
+  @include flex-center-wrap;
 }
 .dot-background {
   border-radius: 50%;
-  margin: 1.5rem 1rem 1rem 0;
+ @include margin-dot;
   cursor: pointer;
   color: var(--navy-grey);
-  background-color: var(--creme);
-  border: 1px solid var(--creme);
+  @include background-border-color;
   width: 80px;
   height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dot-background:hover, .active {
-  border: 1px solid var(--light-grey);
+  @include flex-center;
+  &:hover, &.active {
+    border: 1px solid var(--light-grey);
+  }
 }
 .title {
   text-transform: capitalize;

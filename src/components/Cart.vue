@@ -26,7 +26,7 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .cart-wrapper {
   position: absolute;
   text-align: right;
@@ -35,12 +35,11 @@ export default {
 }
 .color-dot {
   text-align: center;
-  background-color: var(--medium-purple);
-  color: var(--white);
+  @include background-purple-white;
   width: 17px;
   height: 17px;
   border-radius: 50%;
-  font-size: .65rem;
+  font-size: $size-xs;
   font-weight: bold;
   position: absolute;
   left: 100%;

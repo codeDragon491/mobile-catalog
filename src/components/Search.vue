@@ -55,7 +55,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .search-box-wrapper {
   position: relative;
   margin-top: 3rem;
@@ -64,21 +64,20 @@ export default {
   width: -webkit-fill-available;
   height: 2.5rem;
   padding: 0 1rem 0;
-  border-radius: 1.25rem;
+  border-radius: $size-lg;
   border: 1px solid var(--white);
   transition: all .3s linear;
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 #search-box::placeholder {
   color: var(--navy-grey);
-  font-size: 1rem;
+  font-size: $size-base;
 }
 #search-box:active, #search-box:focus {
   border: 1px solid var(--light-grey);
   outline: none;
 }
 .icon.icon-x {
-  cursor: pointer;
   position: absolute;
   transition: all .1s ease-in-out;
   top: 50%;
