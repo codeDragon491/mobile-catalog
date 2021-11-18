@@ -10,7 +10,7 @@
       <search @search-query="setQuery" :items="mobilesStatic" v-model="mobiles" />
       <main-filters :filters="filtersData" :items="mobilesStatic" v-model="mobiles" />
     </section>
-    <section class="mobiles-section">
+    <section :class="`${!mobiles.length && 'no-search-result'} mobiles-section`">
       <div class="mobile-card"
         v-for="mobile in mobiles"
         :key="mobile.id"
@@ -23,6 +23,7 @@
         />
         <p class="price">{{ mobile.price }}</p>
       </div>
+      <div v-if="!mobiles.length" :inner-html.prop="noSearchResultFound | highlight(searchQuery)"></div>
     </section>
   </div>
 </template>
@@ -47,6 +48,9 @@ export default {
   computed: {
     mobileNameFormatted() {
       return this.mobile.name.replace(/\s+/g, '-')
+    },
+    noSearchResultFound () {
+      return `Your search on ${this.searchQuery} gave no result`
     }
   },
   filters: {
@@ -115,6 +119,9 @@ export default {
 @media screen and (min-width: 768px) {
   .mobiles-section {
     grid-template-columns: repeat(auto-fill, 240px);
+  }
+  .mobiles-section.no-search-result {
+    grid-template-columns: 100%;
   }
   .actions-section{
     width: 80%;
